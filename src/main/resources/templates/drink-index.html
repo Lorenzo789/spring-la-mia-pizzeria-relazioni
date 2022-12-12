@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Drink Index</title>
+</head>
+<body>
+    <header th:replace="~{frag :: header()}"></header>
+    <main>
+
+        <form class="m-5" action="/drinks/search/drink" method="GET">
+            <div class="mb-3">
+                <label for="query" class="form-label">Search a Drink</label>
+                <input type="text" name="query" th:value="${query}">
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+        </form>
+
+        <!-- Table For Drinks -->
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col" colspan="1">Price</th>
+                <th scope="col">
+                    <a th:href="@{/drinks/create-drink}" class="btn btn-success">
+                        Create
+                    </a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="drink : ${drinks}" th:object="${drink}">
+                <th scope="row">[[*{id}]]</th>
+                <td>                
+                    <a th:href="@{/drinks/show-drink/{id} (id=*{id})}">
+                        [[*{name}]]
+                    </a>
+                </td>
+                <td>[[*{price}]]</td>
+                <td>
+                    <a th:href="@{/drinks/edit-drink/{id} (id=*{id})}" class="btn btn-primary">
+                        Edit
+                    </a>
+                    <a th:href="@{/drinks/delete-drink/{id} (id=*{id})}" class="btn btn-danger">
+                        Delete
+                    </a>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <!-- Table For Drinks -->
+    </main>
+</body>
+</html>
