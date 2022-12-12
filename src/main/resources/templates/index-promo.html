@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Promos</title>
+</head>
+<body>
+    <header th:replace="~{frag :: header()}"></header>
+    <main>
+        
+        <table class="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Start</th>
+                <th scope="col" colspan="1">End</th>
+                <th scope="col">
+                    <a th:href="@{/pizza/create}" class="btn btn-success">
+                        Create
+                    </a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="promo : ${promos}" th:object="${promo}">
+                <th scope="row">[[*{id}]]</th>
+                <td>                
+                    <a th:href="@{/pizza/{id} (id=*{id})}">
+                        [[*{title}]]
+                    </a>
+                </td>
+                <td>[[*{start_date}]]</td>
+                <td>[[*{end_date}]]</td>
+                <td>
+                    <a th:href="@{/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
+                        Update
+                    </a>
+                    <a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger">
+                        Delete
+                    </a>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

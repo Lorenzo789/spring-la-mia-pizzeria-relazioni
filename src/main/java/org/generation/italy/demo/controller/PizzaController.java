@@ -25,7 +25,6 @@ public class PizzaController {
 
 	@Autowired
 	private PizzaService pizzaService;
-	private DrinkService drinkService;
 	
 	@GetMapping
 	public String index(Model model) {
