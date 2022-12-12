@@ -10,25 +10,30 @@
 </head>
 <body>
     <header th:replace="~{frag :: header()}"></header>
-    <h1>Pizza Edit</h1>
-    <form method="POST" action="/pizza/update" th:object="${pizza}" >
+
+    <h1 class="p-4">Pizza Edit</h1>
+
+    <form method="POST" action="/pizza/update" th:object="${pizza}" class="px-4">
+
     	<input type="number" name="id" th:field="*{id}" style="display:none">
-		<div>
-            <label>Name</label>
-            <input type="text" name="name" th:field="*{name}">
+
+		<div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" th:field="*{name}">
         </div>
 
-        <div>
-            <label>Description</label>
-            <input type="text" name="description" th:field="*{description}">
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" name="description" class="form-control" th:field="*{description}">
         </div>
 
-        <div> 
-		    <label>Price</label>
-		    <input type="number" name="price" th:field="*{price}">
+        <div class="mb-3"> 
+		    <label class="form-label">Price</label>
+		    <input type="number" name="price" class="form-control" th:field="*{price}">
         </div>
         
-		<input type="submit" value="UPDATE">
+		<input type="submit" value="UPDATE" class="btn btn-success">
 	</form>
+
 </body>
 </html>

@@ -10,7 +10,9 @@
 </head>
 <body>
     <header th:replace="~{frag :: header()}"></header>
-    <h1>Add new Drink</h1>
+
+    <h1 class="p-4">Add new Drink</h1>
+
     <div th:if="${errors}">
 		<h4>Error</h4>
 		<ul>
@@ -19,22 +21,24 @@
 			</li>
 		</ul>
 	</div>
-    <form method="POST" action="/drinks/create-drink" th:object="${drink}" >
-        <div>
-            <label>Name</label>
-            <input type="text" name="name" th:field="*{name}">
+
+    <form method="POST" action="/drinks/create-drink" th:object="${drink}" class="px-4">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" th:field="*{name}">
         </div>
 
-        <div>
-            <label>Description</label>
-            <input type="text" name="description" th:field="*{description}">
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <input type="text" name="description" class="form-control" th:field="*{description}">
         </div>
 
-        <div> 
-		    <label>Price</label>
-		    <input type="number" name="price" th:field="*{price}">
+        <div class="mb-3"> 
+		    <label class="form-label">Price</label>
+		    <input type="number" name="price" class="form-control" th:field="*{price}">
         </div>
-        <input type="submit" value="CREATE">
+
+        <input type="submit" value="CREATE" class="btn btn-success">
     </form>
 </body>
 </html>

@@ -1,13 +1,18 @@
 package org.generation.italy.demo.pojo;
 
+import java.util.List;
+
 import org.generation.italy.demo.interf.PriceableInt;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -34,6 +39,9 @@ public class Pizza implements PriceableInt{
 	@Min(value = 1, message = "the price must be bigger than 0")
 	private int price;
 	
+	@OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL)
+	private List<Promotion> promos;
+	
 	public Pizza() {}
 	
 	public Pizza(String name, String description, int price) {
@@ -41,9 +49,10 @@ public class Pizza implements PriceableInt{
 		setName(name);
 		setDescription(description);
 		setPrice(price);
+		setPromos(promos);
 	}
 
-	
+	//setter and getter
 	public int getId() {
 		return id;
 	}
@@ -75,11 +84,21 @@ public class Pizza implements PriceableInt{
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	public List<Promotion> getPromos() {
+		return promos;
+	}
+
+	public void setPromos(List<Promotion> promos) {
+		this.promos = promos;
+	}
+	//setter and getter
 	
 	@Override
 	public String toString() {
 		return "name: " + getName()
 		+ "\nDescription: " + getDescription()
-		+ "\nPrice: " + getPrice();
+		+ "\nPrice: " + getPrice()
+		+ "\nPromo: " + getPromos();
 	}
 }
