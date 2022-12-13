@@ -3,8 +3,10 @@ package org.generation.italy.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.generation.italy.demo.pojo.Ingredient;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promotion;
+import org.generation.italy.demo.serv.IngredientService;
 import org.generation.italy.demo.serv.PizzaService;
 import org.generation.italy.demo.serv.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +28,15 @@ public class PizzaController {
 
 	@Autowired
 	private PizzaService pizzaService;
-	
 	@Autowired
 	private PromotionService promoService;
+	@Autowired
+	private IngredientService ingredientService;
 	
 	@GetMapping
 	public String index(Model model) {
 		
-		List<Pizza> pizze = pizzaService.findAll();
+		List<Pizza> pizze = pizzaService.findAllWPromo();
 		model.addAttribute("pizze", pizze);
 		
 		return "home";
@@ -60,6 +63,9 @@ public class PizzaController {
 		List<Promotion> promos = promoService.findAll();
 		model.addAttribute("promos", promos);
 		
+		List<Ingredient> ingredients = ingredientService.findAll();
+		model.addAttribute("ingredients", ingredients);
+		
 		return "create";
 	}
 	
@@ -75,6 +81,20 @@ public class PizzaController {
 			redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
 			
 			return "redirect:/pizza/create";
+		}
+		
+		List<Promotion> promos = pizza.getPromos();
+		
+		for(Promotion promo : promos) {
+			
+			promo.setPizza(pizza);
+		}
+		
+		List<Ingredient> ingredients = pizza.getIngredients();
+		
+		for(Ingredient ingredient : ingredients) {
+			
+			ingredient.getPizze().add(pizza);
 		}
 		
 		pizzaService.save(pizza);

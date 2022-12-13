@@ -12,53 +12,31 @@
 <body>
     <header th:replace="~{frag :: header()}"></header>
     <main>
-
-        <form class="m-5" action="/search/pizza" method="GET">
-            <div class="mb-3">
-                <label for="query" class="form-label">Search a pizza</label>
-                <input type="text" name="query" th:value="${query}">
-            </div>
-
-            <div>
-                <button type="submit" class="btn btn-primary">
-                    Search
-                </button>
-            </div>
-        </form>
-
-        <!-- Table for Pizza -->
+        <!-- Table for Ingredient -->
         <table class="table table-dark table-striped">
             <thead>
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
-                <th scope="col" colspan="1">Price</th>
-                <th scope="col" colspan="1">Promo</th>
-                <th scope="col" colspan="1">Ingredient</th>
+                <th scope="col" colspan="1">Pizze</th>
                 <th scope="col">
-                    <a th:href="@{/pizza/create}" class="btn btn-success">
+                    <a th:href="@{/ingredient/create}" class="btn btn-success">
                         Create
                     </a>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr th:each="pizza : ${pizze}" th:object="${pizza}">
+              <tr th:each="ingredient : ${ingredients}" th:object="${ingredient}">
                 <th scope="row">[[*{id}]]</th>
                 <td>                
                     <a th:href="@{/pizza/{id} (id=*{id})}">
                         [[*{name}]]
                     </a>
                 </td>
-                <td>[[*{price}]]</td>
                 <td>
-                    <span th:each="promo : ${pizza.promos}">
-                        [[${promo.title}]] -
-                    </span>
-                </td>
-                <td>
-                    <span th:each="ingredient : ${pizza.ingredients}">
-                        [[${ingredient.name}]] -
+                    <span th:each="pizza : ${ingredient.Pizze}">
+                        [[${pizza.name}]] -
                     </span>
                 </td>
                 <td>
@@ -72,7 +50,7 @@
               </tr>
             </tbody>
         </table>
-        <!-- Table for Pizza -->
+        <!-- Table for Ingredient -->
     </main>
 </body>
 </html>

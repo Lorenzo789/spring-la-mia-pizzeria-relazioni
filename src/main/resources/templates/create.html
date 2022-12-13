@@ -28,9 +28,20 @@
             <input class="form-control" type="text" name="name" th:field="*{name}">
         </div>
         <!-- Relazione uno a molti dove la pizza puo avere molte promo per cui una checkbox-->
+        <label for="promos" class="form-label">
+            <h3>Promotion:</h3>
+        </label>
         <div th:each="promo : ${promos}" th:object="${promo}" class="mb-3">
 			<input class="form-check-input" type="checkbox" name="promos" th:value="*{id}" th:field="${pizza.promos}">
 			<label class="form-label">[[*{title}]]</label>
+		</div>
+
+        <label for="ingredients" class="form-label">
+            <h3>Ingredients:</h3>
+        </label>
+        <div th:each="ingredient : ${ingredients}" th:object="${ingredient}" class="mb-3">
+			<input class="form-check-input" type="checkbox" name="ingredients" th:value="*{id}" th:field="${pizza.ingredients}">
+			<label class="form-label">[[*{name}]]</label>
 		</div>
 
         <div class="mb-3">

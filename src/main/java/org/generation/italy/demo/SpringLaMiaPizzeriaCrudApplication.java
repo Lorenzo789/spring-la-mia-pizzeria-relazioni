@@ -1,12 +1,15 @@
 package org.generation.italy.demo;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 import org.generation.italy.demo.pojo.Drink;
+import org.generation.italy.demo.pojo.Ingredient;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promotion;
 import org.generation.italy.demo.serv.DrinkService;
+import org.generation.italy.demo.serv.IngredientService;
 import org.generation.italy.demo.serv.PizzaService;
 import org.generation.italy.demo.serv.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,8 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	private DrinkService drinkService;
 	@Autowired
 	private PromotionService promoService;
+	@Autowired
+	private IngredientService ingredientService;
 	
 	
 	public static void main(String[] args) {
@@ -71,6 +76,26 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 		promoService.save(promo3);
 		
 		List<Promotion> promos = promoService.findAll();
+		
+		
+		Ingredient ing1 = new Ingredient("olio");
+		Ingredient ing2 = new Ingredient("farina");
+		Ingredient ing3 = new Ingredient("sale");
+		
+		ingredientService.save(ing1);
+		ingredientService.save(ing2);
+		ingredientService.save(ing3);
+		
+		List<Ingredient> allPizzaIngredient = Arrays.asList(new Ingredient[] {
+				ing1,
+				ing2,
+				ing3
+		});
+		
+		Pizza p6 = new Pizza("Margheritona", null, 20, allPizzaIngredient);
+		pizzaService.save(p6);
+		
+		List<Ingredient> ingredients = ingredientService.findAll();
 	}
 
 }
