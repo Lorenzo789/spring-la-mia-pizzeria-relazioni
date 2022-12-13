@@ -19,6 +19,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Start</th>
                 <th scope="col" colspan="1">End</th>
+                <th scope="col" colspan="1">Pizze</th>
                 <th scope="col">
                     <a th:href="@{/promo/create}" class="btn btn-success">
                         Create
@@ -36,6 +37,9 @@
                 </td>
                 <td>[[*{start_date}]]</td>
                 <td>[[*{end_date}]]</td>
+                <td>
+                    [[*{pizza.name}]]
+                </td>
                 <td>
                     <a th:href="@{/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
                         Edit

@@ -32,8 +32,7 @@ public class PromotionController {
 	@GetMapping
 	public String index(Model model) {
 		
-		List<Promotion> promos = promoService.findAll();
-		
+		List<Promotion> promos = promoService.findAllWPizza();
 		model.addAttribute("promos", promos);
 		
 		return "index-promo";

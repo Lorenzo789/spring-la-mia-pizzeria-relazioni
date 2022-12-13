@@ -20,9 +20,9 @@
         </div>
 
         <div class="mb-3">
-            <!-- Relazione uno a molti dove le promo hanno una pizza -->
+            <!-- Relazione uno a molti dove le promo hanno una sola pizza per cui una select -->
             <label for="pizza" class="form-label">
-                Choose the pizza
+                Pizze
             </label>
             <select name="pizza" class="form-select">
                 <option th:each="pizza : ${pizzas}" th:object="${pizza}" th:value="*{id}" th:field="${promos.pizza}">
