@@ -21,7 +21,7 @@ public class PromotionService {
 		
 		return promoRepo.findAll();
 	}
-	public Optional<Promotion> findPizzaById(int id) {
+	public Optional<Promotion> findPromoById(int id) {
 		
 		return promoRepo.findById(id);
 	}

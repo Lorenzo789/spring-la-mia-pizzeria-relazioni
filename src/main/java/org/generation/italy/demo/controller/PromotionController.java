@@ -1,6 +1,7 @@
 package org.generation.italy.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promotion;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -65,6 +67,17 @@ public class PromotionController {
 		
 		promoService.save(promo);
 		
-		return "redirect:/";
+		return "redirect:/promo";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") int id) {
+		
+		Optional<Promotion> optPromo = promoService.findPromoById(id);
+		Promotion promos = optPromo.get();
+		
+		promoService.delete(promos);
+		
+		return "redirect:/promo";
 	}
 }
