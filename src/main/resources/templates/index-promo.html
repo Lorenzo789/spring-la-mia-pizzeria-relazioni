@@ -20,7 +20,7 @@
                 <th scope="col">Start</th>
                 <th scope="col" colspan="1">End</th>
                 <th scope="col">
-                    <a th:href="@{/pizza/create}" class="btn btn-success">
+                    <a th:href="@{/promo/create}" class="btn btn-success">
                         Create
                     </a>
                 </th>
@@ -38,7 +38,7 @@
                 <td>[[*{end_date}]]</td>
                 <td>
                     <a th:href="@{/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
-                        Update
+                        Edit
                     </a>
                     <a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger">
                         Delete
