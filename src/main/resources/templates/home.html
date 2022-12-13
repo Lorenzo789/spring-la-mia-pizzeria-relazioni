@@ -33,6 +33,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
                 <th scope="col" colspan="1">Price</th>
+                <th scope="col" colspan="1">Promo</th>
                 <th scope="col">
                     <a th:href="@{/pizza/create}" class="btn btn-success">
                         Create
@@ -49,6 +50,11 @@
                     </a>
                 </td>
                 <td>[[*{price}]]</td>
+                <td>
+                    <span th:each="promo : ${pizza.promos}">
+                        [[${promo.title}]] -
+                    </span>
+                </td>
                 <td>
                     <a th:href="@{/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
                         Update

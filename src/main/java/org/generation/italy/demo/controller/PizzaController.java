@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promotion;
-import org.generation.italy.demo.serv.DrinkService;
 import org.generation.italy.demo.serv.PizzaService;
 import org.generation.italy.demo.serv.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,6 @@ public class PizzaController {
 	public String index(Model model) {
 		
 		List<Pizza> pizze = pizzaService.findAll();
-		
 		model.addAttribute("pizze", pizze);
 		
 		return "home";
