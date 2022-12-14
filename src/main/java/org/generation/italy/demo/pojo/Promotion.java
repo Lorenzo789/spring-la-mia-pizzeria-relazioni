@@ -94,7 +94,6 @@ public class Promotion {
 		
 		return "Start: " + getStart_date()
 		+ "\nEnd: " + getEnd_date()
-		+ "\nTitle: " + getTitle()
-		+ "\nPizza: " + getPizza();
+		+ "\nTitle: " + getTitle();
 	}
 }

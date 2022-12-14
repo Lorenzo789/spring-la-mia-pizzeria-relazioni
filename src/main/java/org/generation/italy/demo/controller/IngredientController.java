@@ -78,9 +78,7 @@ public class IngredientController {
 	@GetMapping("/update/{id}")
 	public String edit(@PathVariable("id") int id, Model model) {
 		
-		Optional<Ingredient> optIngredient = ingredientService.findById(id);
-		
-		Ingredient ingredient = optIngredient.get();
+		Ingredient ingredient = ingredientService.findById(id);
 		
 		model.addAttribute("ingredient", ingredient);
 		
@@ -105,11 +103,27 @@ public class IngredientController {
 			return "redirect:/ingredient";
 		}
 		
-		List<Pizza> pizze = ingredient.getPizze();
-		for (Pizza p : pizze) {
+		Ingredient oldIng = ingredientService.findById(ingredient.getId());
+		
+		for (Pizza p : oldIng.getPizze()) {
 			
-			p.addIngredients(ingredient);
+//			System.err.println(p.getIngredients());
+//			
+//			for(Ingredient b : p.getIngredients()) {
+//				
+//				System.err.println(b.getName());
+//				
+//			}
+			p.removeIngredients(ingredient);
+			
+			List<Pizza> pizze = ingredient.getPizze();
+			
+			for (Pizza pizza : pizze) {
+				
+				pizza.addIngredients(ingredient);
+			}
 		}
+		
 		
 		ingredientService.save(ingredient);
 		
@@ -119,10 +133,9 @@ public class IngredientController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") int id) {
 		
-		Optional<Ingredient> optIngredient = ingredientService.findById(id);
-		Ingredient ingredient = optIngredient.get();
+		Ingredient optIngredient = ingredientService.findById(id);
 		
-		ingredientService.delete(ingredient);
+		ingredientService.delete(optIngredient);
 		
 		return "redirect:/ingredient";
 	}

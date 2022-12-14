@@ -128,12 +128,14 @@ public class Pizza implements PriceableInt{
 		}
 	}
 	
+	public void removeIngredients(Ingredient ingredient) {
+		getIngredients().remove(ingredient);
+	}
+	
 	@Override
 	public String toString() {
 		return "name: " + getName()
 		+ "\nDescription: " + getDescription()
-		+ "\nPrice: " + getPrice()
-		+ "\nPromo: " + getPromos()
-		+ "\nIngredients: " + getIngredients();
+		+ "\nPrice: " + getPrice();
 	}
 }
