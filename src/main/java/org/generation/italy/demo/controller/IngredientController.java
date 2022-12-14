@@ -108,16 +108,7 @@ public class IngredientController {
 		List<Pizza> pizze = ingredient.getPizze();
 		for (Pizza p : pizze) {
 			
-			List<Ingredient> ingredientPresent = p.getIngredients();
-			
-			if (p.getIngredients().equals(ingredientPresent)) {
-				
-				System.err.println(p.getIngredients().equals(ingredientPresent));
-				
-			} else {
-				
-				p.getIngredients().add(ingredient);
-			}
+			p.addIngredients(ingredient);
 		}
 		
 		ingredientService.save(ingredient);

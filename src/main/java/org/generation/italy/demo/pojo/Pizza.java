@@ -111,6 +111,23 @@ public class Pizza implements PriceableInt{
 	}
 	//setter and getter
 
+	public void addIngredients(Ingredient ingredient) {
+		
+		boolean finded = false;
+		
+		for(Ingredient ing : getIngredients()) {
+		
+			if (ing.getId() == ingredient.getId()) {
+				finded = true;
+			}
+			
+		}
+		
+		if (!finded) {
+			getIngredients().add(ingredient);
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "name: " + getName()
