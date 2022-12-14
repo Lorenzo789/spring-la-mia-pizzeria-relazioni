@@ -115,4 +115,15 @@ public class IngredientController {
 		
 		return "redirect:/ingredient";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") int id) {
+		
+		Optional<Ingredient> optIngredient = ingredientService.findById(id);
+		Ingredient ingredient = optIngredient.get();
+		
+		ingredientService.delete(ingredient);
+		
+		return "redirect:/ingredient";
+	}
 }

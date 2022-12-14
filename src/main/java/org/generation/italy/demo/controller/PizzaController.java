@@ -110,6 +110,10 @@ public class PizzaController {
 		
 		model.addAttribute("pizza", pizza);
 		
+		List<Ingredient> ingredients = ingredientService.findAll();
+		
+		model.addAttribute("ingredients", ingredients);
+		
 		return "edit";
 	}
 	
