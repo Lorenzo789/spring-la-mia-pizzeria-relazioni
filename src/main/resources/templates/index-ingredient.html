@@ -12,6 +12,16 @@
 <body>
     <header th:replace="~{frag :: header()}"></header>
     <main>
+
+        <div th:if="${errors}">
+            <h4>Error</h4>
+            <ul>
+                <li th:each="error : ${errors}" th:object="${error}">
+                    [[*{defaultMessage}]]
+                </li>
+            </ul>
+        </div>
+
         <!-- Table for Ingredient -->
         <table class="table table-dark table-striped">
             <thead>
@@ -40,8 +50,8 @@
                     </span>
                 </td>
                 <td>
-                    <a th:href="@{/pizza/update/{id} (id=*{id})}" class="btn btn-primary">
-                        Update
+                    <a th:href="@{/ingredient/update/{id} (id=*{id})}" class="btn btn-primary">
+                        Edit
                     </a>
                     <a th:href="@{/pizza/delete/{id} (id=*{id})}" class="btn btn-danger">
                         Delete
