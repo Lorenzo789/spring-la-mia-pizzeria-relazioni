@@ -2,7 +2,6 @@ package org.generation.italy.demo.pojo;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +23,8 @@ public class Ingredient {
 	@NotEmpty(message = "the name can't be empty")
 	private String name;
 	
-	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.ALL)
+	//non mettere il cascade sulle manytomany
+	@ManyToMany(mappedBy = "ingredients")
 	private List<Pizza> pizze;
 
 	public Ingredient() {}
@@ -60,5 +60,5 @@ public class Ingredient {
 		this.pizze = pizze;
 	}
 	//getter and setter
-	
+
 }

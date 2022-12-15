@@ -1,11 +1,9 @@
 package org.generation.italy.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.generation.italy.demo.pojo.Ingredient;
 import org.generation.italy.demo.pojo.Pizza;
-import org.generation.italy.demo.pojo.Promotion;
 import org.generation.italy.demo.serv.IngredientService;
 import org.generation.italy.demo.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,14 +104,7 @@ public class IngredientController {
 		Ingredient oldIng = ingredientService.findById(ingredient.getId());
 		
 		for (Pizza p : oldIng.getPizze()) {
-			
-//			System.err.println(p.getIngredients());
-//			
-//			for(Ingredient b : p.getIngredients()) {
-//				
-//				System.err.println(b.getName());
-//				
-//			}
+
 			p.removeIngredients(ingredient);
 			
 			List<Pizza> pizze = ingredient.getPizze();
@@ -134,6 +125,12 @@ public class IngredientController {
 	public String delete(@PathVariable("id") int id) {
 		
 		Ingredient optIngredient = ingredientService.findById(id);
+		
+		for (Pizza p : optIngredient.getPizze()) {
+			
+			p.removeIngredients(optIngredient);
+			
+		}
 		
 		ingredientService.delete(optIngredient);
 		

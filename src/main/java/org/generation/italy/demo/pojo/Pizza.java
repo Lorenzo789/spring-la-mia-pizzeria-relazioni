@@ -10,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -40,7 +39,7 @@ public class Pizza implements PriceableInt{
 	@Min(value = 1, message = "the price must be bigger than 0")
 	private int price;
 	
-	@OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pizza")
 	private List<Promotion> promos;
 	
 	@ManyToMany
@@ -130,6 +129,13 @@ public class Pizza implements PriceableInt{
 	
 	public void removeIngredients(Ingredient ingredient) {
 		getIngredients().remove(ingredient);
+	}
+	
+	//funzione per eliminare un ingrediente ed eliminarlo anche nelle pizze che lo possiedono
+	public void deleteIngredient(Ingredient ingredient) {
+		
+		this.ingredients.remove(ingredient);
+		ingredient.getPizze().remove(this);
 	}
 	
 	@Override
